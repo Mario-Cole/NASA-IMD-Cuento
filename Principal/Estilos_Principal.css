@@ -94,6 +94,7 @@ body {
     border-radius: 50px;
     border: 1.5px solid #38bdf8;
     background: rgba(56, 189, 248, 0.08);
+    
     transition: all 0.35s ease;
     position: relative;
     overflow: hidden;
@@ -102,6 +103,7 @@ body {
 .btn-espacial:hover {
     background: #38bdf8;
     color: #090a0f;
+   
     transform: translateY(-3px) scale(1.03);
 }
 
