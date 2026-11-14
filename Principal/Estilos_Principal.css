@@ -1,0 +1,121 @@
+/* Reseteo y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    position: relative;
+}
+
+/* Efecto de nebulosa sutil */
+.nebulosa {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(76, 29, 149, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.2) 0%, transparent 50%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Campo de estrellas generado con CSS puro */
+.estrellas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    box-shadow: 
+        120px 80px #fff, 340px 210px #fff, 560px 90px #fff, 780px 320px #fff,
+        920px 150px #fff, 1100px 410px #fff, 1280px 120px #fff, 150px 450px #fff,
+        420px 520px #fff, 670px 480px #fff, 890px 610px #fff, 1150px 580px #fff,
+        80px 680px #fff, 290px 720px #fff, 510px 690px #fff, 740px 750px #fff,
+        1020px 710px #fff, 1320px 640px #fff, 210px 190px #a5f3fc, 610px 260px #c4b5fd,
+        990px 310px #a5f3fc, 1380px 290px #fff, 45px 310px #c4b5fd, 830px 80px #fff;
+    animation: parpadeo 4s infinite alternate ease-in-out;
+    z-index: 1;
+}
+
+@keyframes parpadeo {
+    0% { opacity: 0.4; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Tarjeta central con efecto cristal (Glassmorphism) */
+.contenedor-espacial {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 3rem 4rem;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(14, 165, 233, 0.15), inset 0 0 20px rgba(139, 92, 246, 0.1);
+}
+
+.titulo-principal {
+    font-size: 2.5rem;
+    letter-spacing: 6px;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(90deg, #e0f2fe, #38bdf8, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitulo {
+    font-size: 1rem;
+    color: #94a3b8;
+    letter-spacing: 2px;
+    margin-bottom: 2.5rem;
+}
+
+/* Contenedor y diseño de los botones */
+.contenedor-botones {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-espacial {
+    text-decoration: none;
+    color: #e0f2fe;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 1rem 2.8rem;
+    border-radius: 50px;
+    border: 1.5px solid #38bdf8;
+    background: rgba(56, 189, 248, 0.08);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-espacial:hover {
+    background: #38bdf8;
+    color: #090a0f;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.8), 0 0 60px rgba(168, 85, 247, 0.4);
+    transform: translateY(-3px) scale(1.03);
+}
+
+.btn-espacial:active {
+    transform: translateY(0) scale(0.98);
+}
