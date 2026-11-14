@@ -1,33 +1,28 @@
-﻿# The script of the game goes in this file.
+﻿define alex = Character("Alexander")
+define perro = Character("Chucho")
+define guac = Character("Guacky")
 
-# Declare characters used by this game. The color argument colorizes the
-# name of the character.
-
-define e = Character("Eileen")
-
-
-# The game starts here.
+label splashscreen:
+    jump start
 
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+    scene cuarto:
+        xysize (1920, 1080)
 
-    scene bg room
+    "Era una mañana como cualquier otra, el sol brillaba, los pájaros y gallos cantaban. Alexander recién se despertaba."
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    show alex espacio at left with fade:
+        zoom 0.45
 
-    show eileen happy
+    menu:
+        "¿Qué debería hacer Alexander?"
+        "Seguir durmiendo":
+            jump dormir
+        "Levantarse":
+            jump levantarse
 
-    # These display lines of dialogue.
-
-    e "You've created a new Ren'Py game."
-
-    e "Once you add a story, pictures, and music, you can release it to the world!"
-
-    # This ends the game.
-
+label dormir:
+    alex "Ay... 5 minutos más."
+        
     return
