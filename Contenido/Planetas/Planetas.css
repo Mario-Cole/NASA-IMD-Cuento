@@ -108,3 +108,38 @@ body {
     pointer-events: none;
     z-index: 10;
 }
+
+.estrellas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 2px;
+    background: transparent;
+    z-index: -1;
+}
+
+.estrellas1 {
+    box-shadow: 
+        120px 80px #fff, 340px 210px #fff, 560px 90px #fff, 780px 320px #fff,
+        920px 150px #fff, 1100px 410px #fff, 1280px 120px #fff, 150px 450px #fff;
+        animation: parpadeo 5s infinite alternate ease-in-out;
+        animation-delay: 0.4s;
+}
+
+.estrellas2 {
+    box-shadow: 
+        420px 520px #fff, 670px 480px #fff, 890px 610px #fff, 1150px 580px #fff,
+        80px 680px #fff, 290px 720px #fff, 510px 690px #fff, 740px 750px #fff;
+        animation: parpadeo 4.5s infinite alternate ease-in-out;
+        animation-delay: 0.2s;
+}   
+
+.estrellas3 {
+    box-shadow: 
+        1020px 710px #fff, 1320px 640px #fff, 210px 190px #a5f3fc, 610px 260px #c4b5fd,
+        990px 310px #a5f3fc, 1380px 290px #fff, 45px 310px #c4b5fd, 830px 80px #fff;
+        animation: parpadeo 3.5s infinite alternate ease-in-out;
+        animation-delay: 0.6s;
+
+}
