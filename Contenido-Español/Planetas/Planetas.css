@@ -18,18 +18,6 @@ body {
     position: relative;
 }
 
-/* Efecto de nebulosa sutil */
-.nebulosa {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(76, 29, 149, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.2) 0%, transparent 50%);
-    z-index: 1;
-    pointer-events: none;
-}
-
 /* Campo de estrellas generado con CSS puro */
 .estrellas {
     position: absolute;
@@ -38,15 +26,31 @@ body {
     width: 2px;
     height: 2px;
     background: transparent;
+    z-index: 1;
+}
+
+.estrellas1 {
     box-shadow: 
         120px 80px #fff, 340px 210px #fff, 560px 90px #fff, 780px 320px #fff,
-        920px 150px #fff, 1100px 410px #fff, 1280px 120px #fff, 150px 450px #fff,
+        920px 150px #fff, 1100px 410px #fff, 1280px 120px #fff, 150px 450px #fff;
+    animation: parpadeo 5s infinite alternate ease-in-out;
+    animation-delay: 0.4s;
+}
+
+.estrellas2 {
+    box-shadow: 
         420px 520px #fff, 670px 480px #fff, 890px 610px #fff, 1150px 580px #fff,
-        80px 680px #fff, 290px 720px #fff, 510px 690px #fff, 740px 750px #fff,
+        80px 680px #fff, 290px 720px #fff, 510px 690px #fff, 740px 750px #fff;
+    animation: parpadeo 4.5s infinite alternate ease-in-out;
+    animation-delay: 0.2s;
+}   
+
+.estrellas3 {
+    box-shadow: 
         1020px 710px #fff, 1320px 640px #fff, 210px 190px #a5f3fc, 610px 260px #c4b5fd,
         990px 310px #a5f3fc, 1380px 290px #fff, 45px 310px #c4b5fd, 830px 80px #fff;
-    animation: parpadeo 4s infinite alternate ease-in-out;
-    z-index: 1;
+    animation: parpadeo 3.5s infinite alternate ease-in-out;
+    animation-delay: 0.6s;
 }
 
 @keyframes parpadeo {
@@ -54,7 +58,7 @@ body {
     100% { opacity: 1; transform: scale(1.1); }
 }
 
-/* Sleek Navigation Arrows */
+/* Flechas de navegación */
 .nav-arrow {
     position: absolute;
     top: 50%;
@@ -95,51 +99,69 @@ body {
     right: 25px;
 }
 
-/* Subtle Planet Name Label */
-#planetLabel {
+/* TÍTULO SUPERIOR FLOTANDO ARRIBA DE LA ESFERA 3D */
+#planetTitle {
+    position: absolute;
+    top: 12vh;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 30px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    z-index: 999;
+    pointer-events: none;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+/* CONTENEDOR INFERIOR (Botón Viajar y Nombre del Planeta) */
+#planetInfoContainer {
     position: absolute;
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
+    display: flex;
+    flex-direction: column-reverse; /* Pone el botón arriba del nombre del planeta abajo */
+    align-items: center;
+    gap: 12px;
+    z-index: 999;
+    pointer-events: auto;
+}
+
+/* Nombre del planeta abajo */
+#planetLabel {
     color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
     letter-spacing: 4px;
     text-transform: uppercase;
     pointer-events: none;
-    z-index: 10;
 }
 
-.estrellas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 2px;
-    background: transparent;
-    z-index: -1;
+/* Estilo del botón Viajar */
+.travel-btn {
+    background: rgba(56, 189, 248, 0.15);
+    color: #e0f2fe;
+    border: 1.5px solid #38bdf8;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 20px;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
 }
 
-.estrellas1 {
-    box-shadow: 
-        120px 80px #fff, 340px 210px #fff, 560px 90px #fff, 780px 320px #fff,
-        920px 150px #fff, 1100px 410px #fff, 1280px 120px #fff, 150px 450px #fff;
-        animation: parpadeo 5s infinite alternate ease-in-out;
-        animation-delay: 0.4s;
+.travel-btn:hover {
+    background: #38bdf8;
+    color: #090a0f;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
 }
 
-.estrellas2 {
-    box-shadow: 
-        420px 520px #fff, 670px 480px #fff, 890px 610px #fff, 1150px 580px #fff,
-        80px 680px #fff, 290px 720px #fff, 510px 690px #fff, 740px 750px #fff;
-        animation: parpadeo 4.5s infinite alternate ease-in-out;
-        animation-delay: 0.2s;
-}   
-
-.estrellas3 {
-    box-shadow: 
-        1020px 710px #fff, 1320px 640px #fff, 210px 190px #a5f3fc, 610px 260px #c4b5fd,
-        990px 310px #a5f3fc, 1380px 290px #fff, 45px 310px #c4b5fd, 830px 80px #fff;
-        animation: parpadeo 3.5s infinite alternate ease-in-out;
-        animation-delay: 0.6s;
-
+.travel-btn:active {
+    transform: scale(0.98);
 }
