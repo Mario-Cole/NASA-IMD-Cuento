@@ -15,7 +15,7 @@ html, body {
     position: relative;
 }
 
-/* Misma nebulosa */
+/* Nebulosa */
 .nebulosa {
     position: absolute;
     width: 100%;
@@ -27,7 +27,7 @@ html, body {
     pointer-events: none;
 }
 
-/* Mismas estrellas */
+/* Estrellas */
 .estrellas {
     position: absolute;
     top: 0;
@@ -51,7 +51,7 @@ html, body {
     100% { opacity: 1; transform: scale(1.1); }
 }
 
-/* Contenedor del Título en la parte superior */
+/* Contenedor del Título */
 .seccion-titulo {
     position: relative;
     z-index: 3;
@@ -68,7 +68,6 @@ html, body {
     background: #38bdf8;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    
 }
 
 /* Contenedor anclado abajo */
@@ -85,10 +84,10 @@ html, body {
     z-index: 2;
 }
 
-/* Esfera de la Tierra posicionada más abajo */
+/* Esfera de la Tierra */
 .media-tierra {
     position: absolute;
-    bottom: -78vw; /* Bajada para mostrar solo la cúpula superior */
+    bottom: -78vw;
     width: 110vw;
     height: 110vw;
     max-width: 1300px;
@@ -105,58 +104,59 @@ html, body {
 /* Ajuste para pantallas grandes */
 @media (min-width: 1182px) {
     .media-tierra {
-        bottom: -960px; /* Muestra los 340px superiores del planeta */
+        bottom: -960px;
     }
 }
 
-/* Continentes verdes más intensos y extensos */
+/* Continentes verdes separados */
 .continente {
     position: absolute;
     background: linear-gradient(145deg, #22c55e 0%, #16a34a 55%, #15803d 100%);
     opacity: 0.85;
-    border-radius: 42% 58% 63% 37% / 48% 42% 58% 52%;
+    border-radius: 30% 70% 70% 30% / 50% 30% 70% 50%;
     box-shadow: inset 0 4px 15px rgba(134, 239, 172, 0.4);
 }
 
 .c1 {
-    width: 36%;
-    height: 22%;
-    top: 3%;
-    left: 16%;
-    transform: rotate(-12deg);
+    width: 30%;
+    height: 13%;
+    top: 8%;
+    left: 6%;
+    transform: rotate(-22deg);
+    border-radius: 40% 60% 80% 20% / 60% 40% 60% 40%;
 }
 
 .c2 {
-    width: 40%;
-    height: 24%;
-    top: 4%;
-    right: 14%;
-    transform: rotate(15deg);
+    width: 32%;
+    height: 14%;
+    top: 9%;
+    right: 5%;
+    transform: rotate(25deg);
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
 }
 
 .c3 {
     width: 28%;
-    height: 16%;
-    top: 1%;
-    left: 42%;
-    border-radius: 50% 45% 55% 40%;
+    height: 11%;
+    top: -2%;
+    left: 36%;
+    border-radius: 50% 50% 70% 30% / 40% 60% 40% 60%;
 }
 
 .c4 {
-    width: 22%;
-    height: 14%;
-    top: 14%;
-    left: 36%;
-    transform: rotate(8deg);
+    width: 20%;
+    height: 15%;
+    top: 18%;
+    left: 40%;
+    transform: rotate(4deg);
+    border-radius: 30% 70% 50% 50% / 70% 30% 70% 30%;
 }
 
-
-
-/* Botón Jugar flotando justo sobre la Tierra */
+/* Botón Start */
 .btn-jugar {
     position: relative;
     z-index: 4;
-    margin-bottom: 18vh; /* Lo ubica sobre el borde del planeta */
+    margin-bottom: 18vh;
     text-decoration: none;
     color: #ffffff;
     font-size: 1.4rem;
@@ -168,7 +168,6 @@ html, body {
     border: 2px solid #bae6fd;
     background: rgba(9, 10, 15, 0.72);
     backdrop-filter: blur(8px);
-    
     transition: all 0.3s ease;
 }
 
@@ -182,4 +181,64 @@ html, body {
 
 .btn-jugar:active {
     transform: translateY(0) scale(0.98);
+}
+
+/* Transiciones para la animación de salida al hacer clic en Start */
+.seccion-titulo,
+.btn-jugar {
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.media-tierra {
+    transition: transform 2.0s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.9s ease;
+}
+
+body.saliendo .seccion-titulo {
+    opacity: 0;
+    transform: translateY(-25px);
+}
+
+body.saliendo .btn-jugar {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+body.saliendo .media-tierra {
+    transform: translateY(35%) scale(0.55);
+    opacity: 0.2;
+}
+
+/* Contenedor del enlace posicionado en la esquina */
+.enlace-cohete {
+    position: absolute;
+    top: 5vh;
+    left: 4vw;
+    z-index: 5;
+    display: block;
+    width: clamp(60px, 8vw, 110px);
+    height: auto;
+    animation: flotarCohete 5s infinite ease-in-out alternate;
+}
+
+/* La imagen se adapta al enlace */
+.cohete-decorativo {
+    width: 100%;
+    height: auto;
+    display: block;
+    transform: rotate(-135deg);
+    filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.4));
+}
+
+/* Animación de flotación */
+@keyframes flotarCohete {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-10px, -10px); }
+}
+
+/* Transición de salida cuando haces clic en Start */
+body.saliendo .enlace-cohete {
+    opacity: 0;
+    transform: scale(0.8) translate(-30px, -30px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viajero del sistema solar en 3D</title>
+    <link rel="stylesheet" href="Planetas.css">
+</head>
+
+<body>
+
+    <div class="estrellas"></div>
+    <div class="estrellas estrellas1"></div>
+    <div class="estrellas estrellas2"></div>
+    <div class="estrellas estrellas3"></div>    
+
+    <!-- 1. Primero los elementos visuales que el JS va a buscar -->
+    <button id="prevArrow" class="nav-arrow hidden" title="Previous Planet">&#8592;</button>
+    <button id="nextArrow" class="nav-arrow" title="Next Planet">&#8594;</button>
+    <div id="planetLabel">La Luna</div>
+
+    <!-- 2. Segundo, cargar las librerías de Three.js correctamente en el orden lógico -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <!-- 3. Por último, cargar tu archivo JavaScript de la lógica -->
+    <script src="planetas.js"></script>
+</body>
+</html>

@@ -7,29 +7,36 @@
     <link rel="stylesheet" href="Estilos_Cuento.css">
 </head>
 <body>
-    <!-- Mismo fondo espacial -->
+    <!-- Fondo espacial -->
     <div class="estrellas"></div>
     <div class="nebulosa"></div>
 
-    <!-- Título superior -->
+    <!-- Cohete decorativo arriba a la izquierda apuntando a la izquierda -->
+    <!-- Cohete decorativo que actúa como botón para regresar -->
+    <a href="../Principal/Principal.html" class="enlace-cohete">
+        <img src="Recursos/cohete.png" alt="Cohete espacial" class="cohete-decorativo">
+    </a>
+
+    <!-- Título principal -->
     <header class="seccion-titulo">
         <h1 class="titulo-espacial">Tales from outer space</h1>
     </header>
 
-    <!-- Tierra más abajo con más continentes verdes -->
+    <!-- Contenedor del planeta y botón -->
     <div class="planeta-contenedor">
-        <a href="Planetas\planetas.html" class="btn-jugar">
+        <a href="Planetas/planetas.html" id="btnStart" class="btn-jugar">
             <span>Start</span>
         </a>
 
+        <!-- Esfera y continentes estilizados -->
         <div class="media-tierra">
-            <!-- Continentes más grandes y vivos -->
             <div class="continente c1"></div>
             <div class="continente c2"></div>
             <div class="continente c3"></div>
             <div class="continente c4"></div>
-            <div class="atm-brillo"></div>
         </div>
     </div>
+
+    <script src="Proceso_cuento.js"></script>
 </body>
 </html>
