@@ -1,145 +1,149 @@
-            // 1. Scene, Camera, and Renderer Setup
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            document.body.appendChild(renderer.domElement);
+// 1. Scene, Camera, and Renderer Setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-            // 2. Add Orbit Controls
-            const controls = new THREE.OrbitControls(camera, renderer.domElement);
-            controls.enableDamping = true;
+// 2. Add Orbit Controls
+const controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
 
-            // 3. Add Lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-            scene.add(ambientLight);
+// 3. Add Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+scene.add(ambientLight);
 
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
-            directionalLight.position.set(20, 10, 20);
-            scene.add(directionalLight);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+directionalLight.position.set(20, 10, 20);
+scene.add(directionalLight);
 
-            // 4. Define Planets Data (Easy to expand with more planets later!)
-            const planets = [
-                {
-                    name: "The Moon",
-                    position: new THREE.Vector3(0, 0, 0),
-                    camDistance: 5,
-                    minZoom: 2,
-                    maxZoom: 15,
-                    model: null
-                },
-                {
-                    name: "Mars",
-                    position: new THREE.Vector3(40, 0, 0),
-                    camDistance: 8, // Slightly further back since Mars is ~2x wider than the Moon
-                    minZoom: 3.5,
-                    maxZoom: 25,
-                    model: null
-                }
-            ];
+// 4. Define Planets Data (Incluye la ruta/enlace de destino de cada uno)
+const planets = [
+    {
+        name: "The Moon",
+        url: "../../renpy_proyecto/luna-1.0-dists/luna-1.0-web/index.html", // <-- Cambia esto por la ruta de la Luna
+        position: new THREE.Vector3(0, 0, 0),
+        camDistance: 5,
+        minZoom: 2,
+        maxZoom: 15,
+        model: null
+    },
+    {
+        name: "Mars",
+        url: "url: ../../../renpy_proyecto/luna/index.html", // <-- Cambia esto por la ruta de Marte
+        position: new THREE.Vector3(40, 0, 0),
+        camDistance: 8,
+        minZoom: 3.5,
+        maxZoom: 25,
+        model: null
+    }
+];
 
-            let currentIndex = 0;
-            const targetCamPos = new THREE.Vector3();
-            const targetLookAt = new THREE.Vector3();
-            let isTransitioning = false;
+let currentIndex = 0;
+const targetCamPos = new THREE.Vector3();
+const targetLookAt = new THREE.Vector3();
+let isTransitioning = false;
 
-            // Initial camera setup at index 0 (The Moon)
-            camera.position.set(0, 0, planets[0].camDistance);
-            controls.target.copy(planets[0].position);
-            controls.minDistance = planets[0].minZoom;
-            controls.maxDistance = planets[0].maxZoom;
+// Initial camera setup at index 0 (The Moon)
+camera.position.set(0, 0, planets[0].camDistance);
+controls.target.copy(planets[0].position);
+controls.minDistance = planets[0].minZoom;
+controls.maxDistance = planets[0].maxZoom;
 
-            const loader = new THREE.GLTFLoader();
+const loader = new THREE.GLTFLoader();
 
-            // 5. Load the Moon (`moon.glb`)
-            loader.load('moon.glb', function (gltf) {
-                planets[0].model = gltf.scene;
-                planets[0].model.position.copy(planets[0].position);
-                scene.add(planets[0].model);
-            }, undefined, (err) => console.error('Moon load error:', err));
+// 5. Load the Moon (`moon.glb`)
+loader.load('moon.glb', function (gltf) {
+    planets[0].model = gltf.scene;
+    planets[0].model.position.copy(planets[0].position);
+    scene.add(planets[0].model);
+}, undefined, (err) => console.error('Moon load error:', err));
 
-            // 6. Define Mars using a Clean Sphere, BaseColor, and Normal Map
-            const textureLoader = new THREE.TextureLoader();
+// 6. Define Mars using a Clean Sphere, BaseColor, and Normal Map
+const textureLoader = new THREE.TextureLoader();
 
-            // Load both of your texture files (make sure the filenames match yours exactly!)
-            const marsBaseColor = textureLoader.load('material_baseColor.jpeg'); // <-- Change to your actual basecolor filename
-            const marsNormalMap = textureLoader.load('material_normal.png');   // <-- Change to your actual normal map filename
+const marsBaseColor = textureLoader.load('material_baseColor.jpeg'); 
+const marsNormalMap = textureLoader.load('material_normal.png');   
 
-            // Create a sphere geometry for Mars
-            const marsGeometry = new THREE.SphereGeometry(2, 64, 64);
-            
-            // Apply both textures to the material
-            const marsMaterial = new THREE.MeshStandardMaterial({ 
-                map: marsBaseColor,          // The visual color/imagery
-                normalMap: marsNormalMap,    // The bump/crater detail map
-                roughness: 0.8 
-            });
+const marsGeometry = new THREE.SphereGeometry(2, 64, 64);
 
-            // Build the Mars mesh and place it 40 units to the right
-            planets[1].model = new THREE.Mesh(marsGeometry, marsMaterial);
-            planets[1].model.position.copy(planets[1].position);
-            scene.add(planets[1].model);
-            console.log('Mars created with BaseColor and Normal map successfully!');
+const marsMaterial = new THREE.MeshStandardMaterial({ 
+    map: marsBaseColor,       
+    normalMap: marsNormalMap,    
+    roughness: 0.8 
+});
 
-            // 7. Navigation Logic
-            const prevArrow = document.getElementById('prevArrow');
-            const nextArrow = document.getElementById('nextArrow');
-            const planetLabel = document.getElementById('planetLabel');
+planets[1].model = new THREE.Mesh(marsGeometry, marsMaterial);
+planets[1].model.position.copy(planets[1].position);
+scene.add(planets[1].model);
 
-            function goToPlanet(index) {
-                if (index < 0 || index >= planets.length) return;
-                currentIndex = index;
-                const planet = planets[currentIndex];
+// 7. Navigation Logic & UI Elements
+const prevArrow = document.getElementById('prevArrow');
+const nextArrow = document.getElementById('nextArrow');
+const planetLabel = document.getElementById('planetLabel');
+const travelBtn = document.getElementById('travelBtn'); // Referencia al botón Viajar
 
-                // Update targets for smooth sliding transition
-                targetLookAt.copy(planet.position);
-                targetCamPos.set(planet.position.x, planet.position.y, planet.position.z + planet.camDistance);
-                
-                // Update zoom boundaries for the selected planet's size
-                controls.minDistance = planet.minZoom;
-                controls.maxDistance = planet.maxZoom;
-                isTransitioning = true;
+function goToPlanet(index) {
+    if (index < 0 || index >= planets.length) return;
+    currentIndex = index;
+    const planet = planets[currentIndex];
 
-                // Update UI label and arrow visibility
-                planetLabel.innerText = planet.name;
-                prevArrow.classList.toggle('hidden', currentIndex === 0);
-                nextArrow.classList.toggle('hidden', currentIndex === planets.length - 1);
-            }
+    // Update targets for smooth sliding transition
+    targetLookAt.copy(planet.position);
+    targetCamPos.set(planet.position.x, planet.position.y, planet.position.z + planet.camDistance);
+    
+    // Update zoom boundaries for the selected planet's size
+    controls.minDistance = planet.minZoom;
+    controls.maxDistance = planet.maxZoom;
+    isTransitioning = true;
 
-            prevArrow.addEventListener('click', () => goToPlanet(currentIndex - 1));
-            nextArrow.addEventListener('click', () => goToPlanet(currentIndex + 1));
+    // Update UI label and arrow visibility
+    planetLabel.innerText = planet.name;
+    prevArrow.classList.toggle('hidden', currentIndex === 0);
+    nextArrow.classList.toggle('hidden', currentIndex === planets.length - 1);
+}
 
-            // Bonus: Support Left/Right keyboard arrow keys
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') goToPlanet(currentIndex + 1);
-                if (e.key === 'ArrowLeft') goToPlanet(currentIndex - 1);
-            });
+prevArrow.addEventListener('click', () => goToPlanet(currentIndex - 1));
+nextArrow.addEventListener('click', () => goToPlanet(currentIndex + 1));
 
-            // 8. Animation Loop
-            function animate() {
-                requestAnimationFrame(animate);
+// Evento para el botón Viajar (redirige a la página configurada del planeta activo)
+travelBtn.addEventListener('click', () => {
+    const currentPlanet = planets[currentIndex];
+    window.location.href = currentPlanet.url;
+});
 
-                // Slow axial rotation
-                if (planets[0].model) planets[0].model.rotation.y += 0.001;
-                if (planets[1].model) planets[1].model.rotation.y += 0.0012;
+// Support Left/Right keyboard arrow keys
+window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') goToPlanet(currentIndex + 1);
+    if (e.key === 'ArrowLeft') goToPlanet(currentIndex - 1);
+});
 
-                // Smooth space slide
-                if (isTransitioning) {
-                    camera.position.lerp(targetCamPos, 0.04);
-                    controls.target.lerp(targetLookAt, 0.04);
+// 8. Animation Loop
+function animate() {
+    requestAnimationFrame(animate);
 
-                    if (camera.position.distanceTo(targetCamPos) < 0.05) {
-                        isTransitioning = false;
-                    }
-                }
+    // Slow axial rotation
+    if (planets[0].model) planets[0].model.rotation.y += 0.001;
+    if (planets[1].model) planets[1].model.rotation.y += 0.0012;
 
-                controls.update();
-                renderer.render(scene, camera);
-            }
-            animate();
+    // Smooth space slide
+    if (isTransitioning) {
+        camera.position.lerp(targetCamPos, 0.04);
+        controls.target.lerp(targetLookAt, 0.04);
 
-            // Handle Window Resizing
-            window.addEventListener('resize', () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
+        if (camera.position.distanceTo(targetCamPos) < 0.05) {
+            isTransitioning = false;
+        }
+    }
+
+    controls.update();
+    renderer.render(scene, camera);
+}
+animate();
+
+// Handle Window Resizing
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});

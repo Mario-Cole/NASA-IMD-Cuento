@@ -14,17 +14,21 @@
     <div class="estrellas estrellas2"></div>
     <div class="estrellas estrellas3"></div>    
 
-    <!-- 1. Primero los elementos visuales que el JS va a buscar -->
+    <!-- Flechas de navegación y contenedor de información/botón -->
     <button id="prevArrow" class="nav-arrow hidden" title="Previous Planet">&#8592;</button>
     <button id="nextArrow" class="nav-arrow" title="Next Planet">&#8594;</button>
-    <div id="planetLabel">The Moon</div>
+    
+    <div id="planetInfoContainer">
+        <div id="planetLabel">The Moon</div>
+        <button id="travelBtn" class="travel-btn">Travel</button>
+    </div>
 
-    <!-- 2. Segundo, cargar las librerías de Three.js correctamente en el orden lógico -->
+    <!-- Librerías de Three.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
-    <!-- 3. Por último, cargar tu archivo JavaScript de la lógica -->
+    <!-- Tu archivo JavaScript -->
     <script src="planetas.js"></script>
 </body>
 </html>

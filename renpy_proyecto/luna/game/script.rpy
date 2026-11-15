@@ -73,6 +73,6 @@ menu:
             python:
                 if renpy.emscripten:
                     import emscripten
-                    emscripten.run_script("window.top.location.href = '/Contenido/Planetas/planetas.html';")    
+                    emscripten.run_script("window.top.location.href = '/Contenido-Español/Planetas/planetas.html';")    
 
 $ renpy.pause(hard=True)    
