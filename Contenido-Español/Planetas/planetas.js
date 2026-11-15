@@ -31,7 +31,7 @@ const planets = [
     {
         name: "Marte",
         title: "¿Dónde deseas ir?",
-        url: "../Contenido-Español/Cuento.html",
+        url: "../../renpy_proyecto/marte-1.0-dists/marte-1.0-web/index.html",
         position: new THREE.Vector3(40, 0, 0),
         camDistance: 8,
         minZoom: 3.5,
