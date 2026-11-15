@@ -31,42 +31,132 @@ body {
     box-shadow: 
         120px 80px #fff, 340px 210px #fff, 560px 90px #fff, 780px 320px #fff,
         920px 150px #fff, 1100px 410px #fff, 1280px 120px #fff, 150px 450px #fff;
-        animation: parpadeo 5s infinite alternate ease-in-out;
-        animation-delay: 0.4s;
+    animation: parpadeo 5s infinite alternate ease-in-out;
+    animation-delay: 0.4s;
 }
 
 .estrellas2 {
     box-shadow: 
         420px 520px #fff, 670px 480px #fff, 890px 610px #fff, 1150px 580px #fff,
         80px 680px #fff, 290px 720px #fff, 510px 690px #fff, 740px 750px #fff;
-        animation: parpadeo 4.5s infinite alternate ease-in-out;
-        animation-delay: 0.2s;
+    animation: parpadeo 4.5s infinite alternate ease-in-out;
+    animation-delay: 0.2s;
 }   
 
 .estrellas3 {
     box-shadow: 
         1020px 710px #fff, 1320px 640px #fff, 210px 190px #a5f3fc, 610px 260px #c4b5fd,
         990px 310px #a5f3fc, 1380px 290px #fff, 45px 310px #c4b5fd, 830px 80px #fff;
-        animation: parpadeo 3.5s infinite alternate ease-in-out;
-        animation-delay: 0.6s;
-
+    animation: parpadeo 3.5s infinite alternate ease-in-out;
+    animation-delay: 0.6s;
 }
 
 @keyframes parpadeo {
-    0%, 100% { opacity: 0.2;}
+    0%, 100% { opacity: 0.2; }
     50% { opacity: 1; }
 }
 
+/* =========================================
+   ELEMENTOS FLOTANTES DEL FONDO
+   ========================================= */
+.elemento-fondo {
+    position: absolute;
+    z-index: 1; /* Detrás de la tarjeta de selección */
+    pointer-events: none; /* No estorban al hacer clic */
+    user-select: none;
+}
+
+/* --- COHETES --- */
+.cohete {
+    opacity: 0.45;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.35));
+}
+
+.c-1 {
+    width: 45px;
+    top: 15vh;
+    left: 14vw;
+    animation: deriva1 10s infinite ease-in-out alternate;
+}
+
+.c-2 {
+    width: 32px;
+    top: 22vh;
+    right: 18vw;
+    animation: deriva2 13s infinite ease-in-out alternate;
+}
+
+.c-3 {
+    width: 50px;
+    bottom: 18vh;
+    left: 22vw;
+    animation: deriva3 11s infinite ease-in-out alternate;
+}
+
+/* --- METEORITOS --- */
+.meteorito {
+    mix-blend-mode: screen; /* Elimina el fondo negro de la imagen */
+    opacity: 0.65;
+    filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.4));
+}
+
+.m-1 {
+    width: 75px;
+    top: 12vh;
+    right: 32vw;
+    animation: deriva2 12s infinite ease-in-out alternate;
+}
+
+.m-2 {
+    width: 55px;
+    bottom: 15vh;
+    right: 14vw;
+    animation: deriva1 9s infinite ease-in-out alternate-reverse;
+}
+
+.m-3 {
+    width: 40px;
+    top: 52vh;
+    left: 8vw;
+    animation: deriva3 14s infinite ease-in-out alternate;
+}
+
+.m-4 {
+    width: 65px;
+    bottom: 24vh;
+    right: 38vw;
+    animation: deriva2 11s infinite ease-in-out alternate-reverse;
+}
+
+/* --- ANIMACIONES DE FLOTACIÓN --- */
+@keyframes deriva1 {
+    0% { transform: translate(0, 0) rotate(-15deg); }
+    100% { transform: translate(25px, -30px) rotate(10deg); }
+}
+
+@keyframes deriva2 {
+    0% { transform: translate(0, 0) rotate(20deg); }
+    100% { transform: translate(-30px, 25px) rotate(-10deg); }
+}
+
+@keyframes deriva3 {
+    0% { transform: translate(0, 0) rotate(5deg); }
+    100% { transform: translate(20px, 25px) rotate(25deg); }
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL Y BOTONES
+   ========================================= */
 .contenedor-espacial {
     position: relative;
     z-index: 2;
     text-align: center;
     padding: 3rem 4rem;
     background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(4px); /* Efecto cristal esmerilado sutil */
     border: 1px solid rgba(56, 189, 248, 0.3);
     border-radius: 20px;
-    }
-
+}
 
 .subtitulo {
     font-size: 1rem;
@@ -75,7 +165,6 @@ body {
     margin-bottom: 2.5rem;
 }
 
-/* Contenedor y diseño de los botones */
 .contenedor-botones {
     display: flex;
     gap: 2rem;
@@ -94,7 +183,6 @@ body {
     border-radius: 50px;
     border: 1.5px solid #38bdf8;
     background: rgba(56, 189, 248, 0.08);
-    
     transition: all 0.35s ease;
     position: relative;
     overflow: hidden;
@@ -103,7 +191,6 @@ body {
 .btn-espacial:hover {
     background: #38bdf8;
     color: #090a0f;
-   
     transform: translateY(-3px) scale(1.03);
 }
 
