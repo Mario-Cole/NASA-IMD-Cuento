@@ -59,12 +59,12 @@ label start:
     
     "Al entrar al baño, el muchacho esperó escuchar la bienvenida de su guacamaya. No obstante, fue recibido por silencio y soledad."
 
-    show alex normal with dissolve:
-        zoom 0.75
+    show alex triste with dissolve:
+        zoom 0.65
         xalign 0.25
         yalign 1.5
     alex "¿Guacky? ¿Dónde estás?"
-    show guacky normal with dissolve:
+    show guacky silueta with dissolve:
         zoom 0.55
         xalign 0.75
         yalign 0.75
@@ -72,8 +72,8 @@ label start:
     scene sala with fade:
         xysize (1920, 1080)
     
-    show alex normal with dissolve:
-        zoom 0.75
+    show alex serio with dissolve:
+        zoom 0.65
         xalign 0.25
         yalign 1.5
     show chucho normal with dissolve:
