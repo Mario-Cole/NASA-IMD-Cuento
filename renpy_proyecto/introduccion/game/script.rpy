@@ -87,6 +87,12 @@ label start:
     alex "Chucho... Agarra tu casco. Iremos al espacio."
 
     scene black with fade 
-    
+    pause 1
+    menu:
+        "Iniciar viaje":
+            python:
+                if renpy.emscripten:
+                    import emscripten
+                    emscripten.run_script("window.top.location.href = '/Contenido/Planetas/planetas.html';")    
     $ renpy.pause(hard=True)
     return
